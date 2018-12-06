@@ -14,6 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 
 public class DBServlet extends HttpServlet {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 public void doGet (HttpServletRequest req, HttpServletResponse res ) 
 throws ServletException, IOException{
 
@@ -33,13 +38,15 @@ Connection connect = DriverManager
 .getConnection("jdbc:mysql://localhost:3306/test?"
 + "user=root&password=");
 
-Statement st = connect.createStatement();
-ResultSet rs = st.executeQuery("SELECT * FROM textes");
+Statement mySql = connect.createStatement();
+ResultSet selectAll = mySql.executeQuery("SELECT * FROM textes");
 
-while (rs.next()) {
-out.print(rs.getString("id"));
-out.print(rs.getString("texte"));
+while (selectAll.next()) {
+out.print(selectAll.getString("id"));
+out.print(selectAll.getString("texte"));
 }
+
+mySql.executeQuery("INSERT INTO `textes` (`id`, `texte`) VALUES (NULL, 'un texte');");
 
 connect.close();
 } catch (ClassNotFoundException e) {
