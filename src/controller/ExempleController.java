@@ -3,12 +3,12 @@ package controller;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
-@Path("/exemple")
+@Path("/controller")
 public class ExempleController {
 	
 	@GET
-	@Path("/bonjour")
+	@Path("/exemple")
 	public String direBonjour() {
-		return "Bonjour";
+		return "Inside ExempleController";
 	}
 }
