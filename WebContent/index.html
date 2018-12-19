@@ -10,11 +10,16 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 $.ajax({
-	url: 'http://localhost:8080/VisitorTp/controller/visitor/post',
-	type: 'POST',
-	data: visitor
-}).done(function(response) {
-	listes = showLists(response.todoListes);
+	url: 'http://localhost:8080/VisitorTp/controller/visitor/get/'+
+	'ip=' + visitor.ip.address + '&' +
+	'country=' + visitor.geo.countryName + '&' +
+	'browser=' + visitor.browser.engine.name + '&' +
+	'browser_version=' + visitor.browser.engine.versionMajor + '&' +
+	'os=' + visitor.os.name + '&' +
+	'os_version=' + visitor.os.version,
+	type: 'GET'
+}).done(function(visitor) {
+	
 });
 </script>
 </body>

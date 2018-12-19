@@ -13,10 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class DBServlet extends HttpServlet {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 public void doGet (HttpServletRequest req, HttpServletResponse res ) 
@@ -28,7 +24,7 @@ out.println( "<HTML>" );
 out.println( "<HEAD>");
 out.println( "<TITLE></TITLE>" );
 out.println( "</HEAD>" );
-
+out.println( "<BODY>CONNECTION OK<br>" );
 
 
 try {
@@ -39,14 +35,16 @@ Connection connect = DriverManager
 + "user=root&password=");
 
 Statement mySql = connect.createStatement();
+
 ResultSet selectAll = mySql.executeQuery("SELECT * FROM textes");
 
 while (selectAll.next()) {
-out.print(selectAll.getString("id"));
-out.print(selectAll.getString("texte"));
+	out.print("<br>");
+	out.print(selectAll.getString("id"));
+	out.print(selectAll.getString("texte"));
 }
 
-mySql.executeQuery("INSERT INTO `textes` (`id`, `texte`) VALUES (NULL, 'un texte');");
+mySql.executeUpdate("INSERT INTO `textes` (`id`, `texte`) VALUES (NULL, 'un texte');");
 
 connect.close();
 } catch (ClassNotFoundException e) {
@@ -54,8 +52,6 @@ connect.close();
 } catch (SQLException e) {
 	e.printStackTrace();
 }
-
-out.println( "<BODY>CONNECTION OK" );
 out.println( "</BODY>" );
 out.println( "</HTML>" );
 out.close();
