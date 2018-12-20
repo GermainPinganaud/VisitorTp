@@ -24,8 +24,10 @@ out.println( "<HTML>" );
 out.println( "<HEAD>");
 out.println( "<TITLE></TITLE>" );
 out.println( "</HEAD>" );
-out.println( "<BODY>CONNECTION OK<br>" );
-
+out.println( "<BODY>" );
+out.println( "<h1>Base de données</h1>" );
+out.println( "<p>Cette page est une servlet qui affiche le contenu de la base de donnée.<p>" );
+out.print("<ul>");
 
 try {
 
@@ -39,30 +41,33 @@ try {
 	ResultSet selectAll = mySql.executeQuery("SELECT * FROM info");
 	
 	while (selectAll.next()) {
-		out.print("<br>");
+		out.print("<li>");
+		out.print("id : ");
 		out.print(selectAll.getString("id"));
-		out.print(" ");
+		out.print(", ip : ");
 		out.print(selectAll.getString("ip"));
-		out.print(" ");
+		out.print(", country : ");
 		out.print(selectAll.getString("country"));
-		out.print(" ");
+		out.print(", browser : ");
 		out.print(selectAll.getString("browser"));
-		out.print(" ");
+		out.print(", version : ");
 		out.print(selectAll.getString("browser_version"));
-		out.print(" ");
+		out.print(", os : ");
 		out.print(selectAll.getString("os"));
-		out.print(" ");
+		out.print(", version : ");
 		out.print(selectAll.getString("os_version"));
-	}
+		out.print("</li>");}
 	
 	
 	connect.close();
+	
 }
 catch (ClassNotFoundException e) {
 	throw new IOException("ClassNotFoundException e");
 } catch (SQLException e) {
 	e.printStackTrace();
 }
+out.println( "</ul>" );
 out.println( "</BODY>" );
 out.println( "</HTML>" );
 out.close();
