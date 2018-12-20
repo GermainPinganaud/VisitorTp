@@ -1,7 +1,7 @@
 package model;
 
 public class Visitor {
-	private String ip;
+		
 	public String getIp() {
 		return ip;
 	}
@@ -38,9 +38,10 @@ public class Visitor {
 	public void setOs_version(String os_version) {
 		this.os_version = os_version;
 	}
+	private String ip;
 	private String country;
 	private String browser;
 	private String browser_version;
 	private String os;
-	private String os_version;	
+	private String os_version;
 }
